@@ -2,6 +2,7 @@
 *.o
 *.a
 *.so
+wargames
 
 # Folders
 _obj
