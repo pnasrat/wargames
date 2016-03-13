@@ -45,3 +45,22 @@ func TestSetNoughtEmptyCell(t *testing.T) {
 		t.Errorf("Expected O got %s", v)
 	}
 }
+
+func TestSetOutOfBoundsError(t *testing.T) {
+	b := NewBoard()
+	var err error
+	invalidCellTests := []struct {
+		x int
+		y int
+		v string
+	}{
+		{42, 21, "X"},
+		{1, -1, "O"},
+	}
+	for _, test := range invalidCellTests {
+		err = b.Set(test.x, test.y, test.v)
+		if err == nil {
+			t.Errorf("No error found for cell (%d, %d)", test.x, test.y)
+		}
+	}
+}
