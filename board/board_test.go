@@ -15,8 +15,18 @@ func TestGetEmptyCell(t *testing.T) {
 
 func TestGetOutOfBoundsError(t *testing.T) {
 	b := NewBoard()
-	_, err := b.Get(42, 21)
-	if err == nil {
-		t.Fail()
+	var err error
+	invalidCellTests := []struct {
+		x int
+		y int
+	}{
+		{42, 21},
+		{1, -1},
+	}
+	for _, test := range invalidCellTests {
+		_, err = b.Get(test.x, test.y)
+		if err == nil {
+			t.Errorf("No error found for cell (%d, %d)", test.x, test.y)
+		}
 	}
 }
