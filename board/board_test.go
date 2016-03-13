@@ -76,6 +76,3 @@ func TestOverwritingCellFails(t *testing.T) {
 		t.Errorf("Expected error on overwriting a cell")
 	}
 }
-
-// TODO
-// TestOverwriteCellFails
