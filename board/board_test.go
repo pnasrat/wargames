@@ -65,5 +65,17 @@ func TestSetOutOfBoundsError(t *testing.T) {
 	}
 }
 
+func TestOverwritingCellFails(t *testing.T) {
+	b := NewBoard()
+	err := b.Set(0, 0, "X")
+	if err != nil {
+		t.Fail()
+	}
+	err = b.Set(0, 0, "O")
+	if err == nil {
+		t.Errorf("Expected error on overwriting a cell")
+	}
+}
+
 // TODO
 // TestOverwriteCellFails

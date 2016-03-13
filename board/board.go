@@ -20,7 +20,11 @@ func (b Board) Set(x, y int, v string) error {
 	if x < 0 || y < 0 || x >= b.size || y >= b.size {
 		return errors.New("Out of board bounds")
 	}
-	b.board[x+3*y] = v
+	i := x + 3*y
+	if b.board[i] != "" {
+		return errors.New("Can not overwrite cell")
+	}
+	b.board[i] = v
 	return nil
 }
 
