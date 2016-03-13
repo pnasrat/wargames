@@ -30,3 +30,18 @@ func TestGetOutOfBoundsError(t *testing.T) {
 		}
 	}
 }
+
+func TestSetNoughtEmptyCell(t *testing.T) {
+	b := NewBoard()
+	err := b.Set(0, 0, "O")
+	if err != nil {
+		t.Fail()
+	}
+	v, err := b.Get(0, 0)
+	if err != nil {
+		t.Fail()
+	}
+	if v != "O" {
+		t.Errorf("Expected O got %s", v)
+	}
+}
